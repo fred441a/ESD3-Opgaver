@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.1.1 (64-bit)
+# SW Build 3900603 on Fri Jun 16 19:30:25 MDT 2023
+# IP Build 3900379 on Sat Jun 17 05:28:05 MDT 2023
+# SharedData Build 3899622 on Fri Jun 16 03:34:24 MDT 2023
+# Start of session at: Thu Sep 14 13:23:38 2023
+# Process ID: 12031
+# Current directory: /home/mikkel/repoes/ESD3/ESD3-Opgaver/Digital hardware design/KG4/EX3/EX3.runs/impl_1
+# Command line: vivado -log Bit4Buffer.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source Bit4Buffer.tcl -notrace
+# Log file: /home/mikkel/repoes/ESD3/ESD3-Opgaver/Digital hardware design/KG4/EX3/EX3.runs/impl_1/Bit4Buffer.vdi
+# Journal file: /home/mikkel/repoes/ESD3/ESD3-Opgaver/Digital hardware design/KG4/EX3/EX3.runs/impl_1/vivado.jou
+# Running On: Mikkel-laptop, OS: Linux, CPU Frequency: 3191.960 MHz, CPU Physical cores: 4, Host memory: 16695 MB
+#-----------------------------------------------------------
+source Bit4Buffer.tcl -notrace
