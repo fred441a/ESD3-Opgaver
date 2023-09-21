@@ -28,27 +28,28 @@ def reverse_list(in_list):
         return_list.append(in_list[i]);
     return return_list
 
-time_list = []
-for i in range(4):
-    random_list = generate_random_list(4)
-    print(random_list)
-    start_time = time.time()
-    insert_sort(random_list)
-    end_time = time.time()
-    time_list.append(end_time-start_time)
+def main():
+    time_list = []
+    for i in range(4):
+        random_list = generate_random_list(4)
+        print(random_list)
+        start_time = time.time()
+        insert_sort(random_list)
+        end_time = time.time()
+        time_list.append(end_time-start_time)
 
-    reversed_random_list = reverse_list(random_list)
-    print(reversed_random_list)
+        reversed_random_list = reverse_list(random_list)
+        print(reversed_random_list)
 
-    start_time = time.time()
-    insert_sort(reversed_random_list)
-    end_time = time.time()
-    time_list.append(end_time-start_time)
+        start_time = time.time()
+        insert_sort(reversed_random_list)
+        end_time = time.time()
+        time_list.append(end_time-start_time)
 
-print(time_list)
+    print(time_list)
 
-fig, ax = plt.subplots()
-ax.bar(range(len(time_list)),time_list)
-plt.show()
-
-
+    fig, ax = plt.subplots()
+    ax.bar(range(len(time_list)),time_list)
+    plt.show()
+if __name__ == "__main__":
+    main()
