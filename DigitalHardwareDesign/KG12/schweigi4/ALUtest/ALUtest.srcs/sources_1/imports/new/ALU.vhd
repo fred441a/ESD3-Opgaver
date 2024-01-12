@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
 -- Company: AAU
--- Engineer: Henrik Schiøler
+-- Engineer: Henrik Schiï¿½ler
 -- 
 -- Create Date: 07/20/2023 11:34:37 AM
 -- Design Name: 
@@ -35,8 +35,8 @@ entity ALU is
            C : out std_logic);
 end ALU;
 
-architecture Behavioral of ALU is
-signal sum,diff,shiftL,shiftR,shiftLR,band,bor,bxor : std_logic_vector(7 downto 0);
+architecture Behavioral of ALU is                   --\/ addad
+signal sum,diff,shiftL,shiftR,shiftLR,band,bor,bxor, negate : std_logic_vector(7 downto 0); 
 signal flagDZ, flagDC, flagSZ, flagsC, flagshZ, flagshO : std_logic;
 
 begin
@@ -77,6 +77,7 @@ flagshZ <= '1' when (shiftR = "00000000") else
 band <= argA and argB;
 bor <= argA or argB;
 bxor <= argA xor argB;
+negate <= not argA; -- addad
          
 with sel select
     res <= sum when "0000",
@@ -86,6 +87,7 @@ with sel select
            band when "0100",
            bor when "0101",
            bxor when "0110",
+           negate when "0111", -- addad
            (others => '0') when others;
            
 with sel select

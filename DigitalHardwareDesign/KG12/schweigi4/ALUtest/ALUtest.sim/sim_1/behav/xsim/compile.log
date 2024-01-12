@@ -1,2 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/uaworld/Desktop/schweigi4/ALUtest/ALUtest.srcs/sources_1/imports/new/ALU.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "/home/mikkel/repoes/ESD3/ESD3-Opgaver/DigitalHardwareDesign/KG12/schweigi4/ALUtest/ALUtest.srcs/sources_1/imports/new/ALU.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'ALU'
