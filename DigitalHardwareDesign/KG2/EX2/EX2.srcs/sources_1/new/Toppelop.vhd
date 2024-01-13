@@ -40,22 +40,24 @@ entity Toppelop is
 end Toppelop;
 
 architecture Behavioral of Toppelop is
-signal and1_result : std_logic;
-signal and2_result : std_logic;
+    signal and1_result : std_logic;
+    signal and2_result : std_logic;
 begin
-bund1 : entity work.bunden
-port map(
-a => SW0,
-b => SW1,
-c => and1_result
-);
-bund2 : entity work.bunden
-port map(
-a => SW2,
-b => SW3,
-c => and2_result
-);
+    bund1 : entity work.bunden
+    port map(
+        a => SW0,
+        b => SW1,
+        c => and1_result
+    );
+    
+    bund2 : entity work.bunden
+    port map(
+        a => SW2,
+        b => SW3,
+        c => and2_result
+    );
 
-LED <= SW2 and SW3; --and1_result; --or (not and1_result);
+    -- LED <= SW2 and SW3; --and1_result; --or (not and1_result);
+    LED <= and1_result or (not and1_result);
 
 end Behavioral;

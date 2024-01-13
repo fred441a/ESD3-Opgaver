@@ -3,7 +3,7 @@ typedef struct {
     int val;
     struct node* next;
     struct node* prev;
-}node;
+} node;
 
 node root = {
     .val = 0,
@@ -53,7 +53,7 @@ node n7 = {
 };
 
 void findMissing(node *root){
-if (root->next == NULL)
+    if (root->next == NULL)
         return;
     
     node* current = root->next;
@@ -62,13 +62,11 @@ if (root->next == NULL)
         int prevVal = current->prev->val;
         int currentVal = current->val;
     
-        if(currentVal - prevVal > 1 )
-            print("missing: %i - %i", prevVal, currentVal);
+        if(currentVal - prevVal > 1)
+            printf("missing: %i - %i", prevVal, currentVal);
 
-    current = current->next;
-    }
-
-    while(current != NULL);
+        current = current->next;
+    } while(current != NULL);
 }
 
 void main(){
