@@ -23,7 +23,6 @@ struct layer3Packet{
 struct layer2Packet{
     const char start = 0x02;
     char length;
-    //char data[255];
     layer3Packet data;
     uint16_t crc;
     const char stop = 0x03;
@@ -91,7 +90,7 @@ enum recieveStateType {IDLE, STARTED, ESCAPED};
 enum recieveStateType recieveState = IDLE;
 
 int bufferPtr = 0;
-layer2Packet recievedPaccketBuffer;
+layer2Packet recievedPacketBuffer;
 
 bool recievePacket() {
     bool packetRecieved = false;
@@ -113,8 +112,13 @@ bool recievePacket() {
         incomingByte -= 0x20;
     }
 
-    ((uint8_t*)&recievedPaccketBuffer)[bufferPtr++] = incomingByte;
+    ((uint8_t*)&recievedPacketBuffer)[bufferPtr++] = incomingByte;
     return packetRecieved;
+}
+
+bool isCRCValid() {
+  uint16_t calculatedCRC = CRC16.ccitt(((uint8_t*)&(recievedPacketBuffer.data)), recievedPacketBuffer.length);
+  return recievedPacketBuffer.crc == calculatedCRC;
 }
 
 void printInfo() {
@@ -149,5 +153,7 @@ void setup(){
 void loop(){
     // delay(1000); // enable this on sender
     bool newPacket = recievePacket();
-    if (newPacket) printInfo();
+    if (!newPacket) return;
+    if (isCRCValid()) printInfo();
+    else Serial.println("ERROR: Calculated CRC does not match recieved CRC!");
 }

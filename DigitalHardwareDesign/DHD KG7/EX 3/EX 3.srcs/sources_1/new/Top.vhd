@@ -39,34 +39,63 @@ entity Top is
 end Top;
 
 architecture Behavioral of Top is
-
-signal State: std_logic_vector (1 downto 0):="00";
+    type tstate is (RED, RED_YELLOW, GREEN, YELLOW);
+    signal State: tstate := RED;
 
 begin
-
-process (Knap)
-begin
-    if(Knap'event and Knap='1') then
-        State(1)<= State(0) XOR State(1);
-        State(0)<= State(0) XOR '1';
-        if (State(0)='0' and State(1)='0') then
+process (Knap) begin
+    if(rising_edge(Knap)) then
+        if (State = RED) then
             Grun <= '0';
             Gelb <= '0';
             Rot <= '1';
-        elsif(State(0)='1' and State(1)='0') then
+            State <= RED_YELLOW;
+        elsif(State = RED_YELLOW) then
             Grun <= '0';
             Gelb <= '1';
             Rot <= '1';
-        elsif(State(0)='0' and State(1)='1') then
+            State <= GREEN;
+        elsif(State = GREEN) then
             Grun <= '1';
             Gelb <= '0';
             Rot <= '0';
-        elsif(State(0)='1' and State(1)='1') then
+            State <= YELLOW;
+        elsif(State = YELLOW) then
             Grun <= '0';
             Gelb <= '1';
             Rot <= '0';
+            State <= RED;
         end if;
     end if;
 end process;
+
+--signal State: std_logic_vector (1 downto 0):="00";
+
+--begin
+
+--process (Knap)
+--begin
+--    if(Knap'event and Knap='1') then
+--        State(1)<= State(0) XOR State(1);
+--        State(0)<= State(0) XOR '1';
+--        if (State(0)='0' and State(1)='0') then
+--            Grun <= '0';
+--            Gelb <= '0';
+--            Rot <= '1';
+--        elsif(State(0)='1' and State(1)='0') then
+--            Grun <= '0';
+--            Gelb <= '1';
+--            Rot <= '1';
+--        elsif(State(0)='0' and State(1)='1') then
+--            Grun <= '1';
+--            Gelb <= '0';
+--            Rot <= '0';
+--        elsif(State(0)='1' and State(1)='1') then
+--            Grun <= '0';
+--            Gelb <= '1';
+--            Rot <= '0';
+--        end if;
+--    end if;
+--end process;
 
 end Behavioral;
