@@ -90,8 +90,28 @@ end component;
   
   --SIGNAL RAM : ram_stype := (OTHERS => (OTHERS => '0')); -- {x"1F", x"07", x"00", x"00", x"00", x"00", x"00", x"06", x"00", x"07", x"06", x"01", x"03", x"05", x"01", x"00", x"03", x"00", x"01", x"0A", x"00", x"01", x"1F", x"00", x"00"};
   --SIGNAL RAM : ram_stype := (x"1F", x"07", x"00", x"00", x"00", x"00", x"00", x"06", x"00", x"07", x"06", x"01", x"03", x"05", x"01", x"00", x"03", x"00", x"01", x"0A", x"02", x"01", x"1F", x"00", x"00");
-  SIGNAL RAM : ram_stype := (x"38", x"07", x"00", x"00", x"00", x"00", x"00", x"06", x"03", x"E8", x"06", x"01", x"01", x"52", x"03", x"02", x"0A", x"03", x"01", x"32", x"00", x"00", x"00", x"00", x"00", x"00");
-                                         -- data                             OP:negate add1
+  
+  -- test of negate opcode (0x52) in register A-D
+--  SIGNAL RAM : ram_stype := (x"06", x"00", x"FF", --Load 0xFF in A 
+--                             x"06", x"01", x"00", --Load 0x00 in B
+--                             x"06", x"02", x"f0", --Load 0xF0 in C
+--                             x"06", x"03", x"0f", --Load 0x0F in D
+                             
+--                             x"52", x"00", x"00", -- Negate A save in A 
+--                             x"52", x"01", x"01", -- Negate B save in B
+--                             x"52", x"02", x"02", -- Negate C save in C
+--                             x"52", x"03", x"03", -- Negate D save in D
+--                             x"00", x"00");
+    
+  -- 2s compliment of E8
+  SIGNAL RAM : ram_stype := (x"38", x"07", x"00", x"00", x"00", x"00", x"00", -- call +7 adressed
+                             x"06", x"00", x"E8", -- Load 0xE8 in A 
+                             x"06", x"01", x"01", -- Load 0x01 in B   
+                                                       
+                             x"52", x"00", x"00", -- Negate A save in A 
+                             x"0A", x"00", x"01", -- Add B to A save in A
+                             x"00", x"00", x"00", 
+                             x"00", x"00", x"00", x"00");                    
   
   SIGNAL databus : std_logic_vector (data_width - 1 DOWNTO 0);
   SIGNAL addr_reg : std_logic_vector (addr_width - 1 DOWNTO 0) := (OTHERS => '0');
