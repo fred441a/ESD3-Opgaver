@@ -58,6 +58,6 @@ begin
     );
 
     -- LED <= SW2 and SW3; --and1_result; --or (not and1_result);
-    LED <= and1_result or (not and1_result);
+    LED <= and1_result or (not and2_result);
 
 end Behavioral;
